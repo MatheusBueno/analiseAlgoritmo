@@ -1,0 +1,292 @@
+section {
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.flex-column {
+  flex-direction: column
+}
+
+span {
+  color: #e5e5e5;
+  margin: 50px 0;
+}
+
+.jutify-content-center {
+  justify-content: center;
+}
+
+.aling-items-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.line-height-1 {
+  line-height: 1;
+}
+
+
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/* set global font to Open Sans */
+body {
+  margin: 0px!important;
+  font-family: 'Open Sans', 'sans-serif';
+}
+
+/* header */
+h1 {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 25px;
+}
+
+/* header/copyright link */
+.link {
+  text-decoration: none;
+  color: #55acee;
+  border-bottom: 2px dotted #55acee;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto;
+}
+
+.link:hover {
+  color: #2ecc71;
+  border-bottom: 2px dotted #2ecc71;
+}
+
+/* button div */
+.buttons {
+  text-align: center;
+}
+
+/* start da css for da buttons */
+.btn {
+  width: 70%;
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.selected {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 2px 0px 0px;
+  opacity: 0.6;
+}
+
+.btn:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+.blue {
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+
+.blue:hover {
+  background-color: #6FC6FF;
+}
+
+.green {
+  background-color: #2ecc71;
+  box-shadow: 0px 5px 0px 0px #15B358;
+}
+
+.green:hover {
+  background-color: #48E68B;
+}
+
+.red {
+  background-color: #e74c3c;
+  box-shadow: 0px 5px 0px 0px #CE3323;
+}
+
+.red:hover {
+  background-color: #FF6656;
+}
+
+.purple {
+  background-color: #9b59b6;
+  box-shadow: 0px 5px 0px 0px #82409D;
+}
+
+.purple:hover {
+  background-color: #B573D0;
+}
+
+.orange {
+  background-color: #e67e22;
+  box-shadow: 0px 5px 0px 0px #CD6509;
+}
+
+.orange:hover {
+  background-color: #FF983C;
+}
+
+.yellow {
+  background-color: #f1c40f;
+  box-shadow: 0px 5px 0px 0px #D8AB00;
+}
+
+.yellow:hover {
+  background-color: #FFDE29;
+}
+
+/* copyright stuffs.. */
+p {
+  text-align: center;
+  color: #55acee;
+  padding-top: 20px;
+}
+
+
+
+
+
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);
+* {
+  padding: 0;
+  margin: 0;
+}
+input {
+  outline: none;
+}
+
+.panel {
+  width: 470px;
+  height: 550px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px black;
+     -moz-box-shadow: 0 0 10px black;
+          box-shadow: 0 0 10px black;
+  background: #1d3244;
+  margin: 100px auto;
+  text-align: center;
+}
+.panel .state {
+  margin-top: 5px;
+  width: 100%;
+  height: 115px;
+  color: white;
+  font-size: 20px;
+}
+
+.panel .state h2 {
+  font-weight: 400;
+}
+.panel .form {
+  width: 340px;
+  margin: 5px auto;
+}
+.panel .login {
+  height: 45px;
+  width: 100%;
+  background-color: #8bc34a;
+  -webkit-border-radius: 45px;
+     -moz-border-radius: 45px;
+          border-radius: 45px;
+  position: relative;
+  line-height: 45px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  -webkit-transition: background .2s;
+     -moz-transition: background .2s;
+       -o-transition: background .2s;
+          transition: background .2s;
+  cursor: pointer;
+}
+.panel .login:active {
+  -webkit-transform: translateY(2px);
+     -moz-transform: translateY(2px);
+      -ms-transform: translateY(2px);
+       -o-transform: translateY(2px);
+          transform: translateY(2px);
+}
+.panel .login:hover {
+  background-color: #599b2d;
+}
+.panel .login:after {
+  font-family: 'FontAwesome';
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background-color: #599b2d;
+  color: #fff;
+  text-shadow: 1px -1px #467a23, 2px -2px #487d24, 3px -3px #4a8025, 4px -4px #4b8326, 5px -5px #4d8627, 6px -6px #4f8928, 7px -7px #508c28, 8px -8px #528f29, 9px -9px #54922a, 10px -10px #55952b, 11px -11px #57982c;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(90deg);
+     -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
+}
+.panel input[type='text'] {
+  background-color: #22232a;
+  -webkit-border-radius: 35px;
+     -moz-border-radius: 35px;
+          border-radius: 35px;
+  font-size: 15px;
+  height: 45px;
+  border: none;
+  padding-left: 15px;
+  width: -webkit-calc(100% - 55px);
+  width: -moz-calc(100% - 55px);
+  width: calc(100% - 55px);
+  margin-bottom: 10px;
+}
+.panel input[type='text'][placeholder] {
+  color: #656d79;
+  font-size: 15px;
+  font-weight: 500;
+}
+.panel .fack {
+  margin-top: 30px;
+  font-size: 14px;
+}
+.panel .fack i.fa {
+  text-decoration: none;
+  color: #fff;
+  vertical-align: middle;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.panel .fack a:link {
+  color: #616973;
+}
+.panel .fack a:visited {
+  color: #555c65;
+}

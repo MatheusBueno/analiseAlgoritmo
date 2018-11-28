@@ -1,3 +1,6 @@
+export let mergenKey = 0, mergenTroc = 0;
+
+
 /**
  * MergeSort algoritm
  * @param vetor array to be sort
@@ -54,24 +57,33 @@ function merge(vetor: number[], inicio: any, meio: any, fim: any) {
   }
 
   for (e = d = 0; d < left.length && e < right.length;) {
-    if (left[d] < right[e]) {
+    if (mergenKey++ && left[d] < right[e]) {
+      mergenTroc++;
       vetor[inicio] = left[d];
       d++;
     } else {
+      mergenTroc++;
       vetor[inicio] = right[e];
       e++;
     }
     inicio++;
   }
   for (; d < left.length;) {
+    mergenTroc++;
     vetor[inicio] = left[d];
     d++;
     inicio++;
   }
   for (; e < right.length;) {
+    mergenTroc++;
     vetor[inicio] = right[e];
     e++;
     inicio++;
   }
 
-} 
+}
+
+export function clearMerge() {
+  mergenKey = 0;
+  mergenTroc = 0;
+}

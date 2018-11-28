@@ -1,32 +1,37 @@
+export let QuicknKey = 0, QuicknTroc = 0;
+
 export function quickSort(vetor: number[], inicio: any, fim: any) {
   inicio = parseInt(inicio);
   fim = parseInt(fim);
-  if (inicio < fim) {
+  if (inicio >= fim) {
+    return;
+  } else {
     const meio = partition(vetor, inicio, fim);
-
     quickSort(vetor, inicio, meio - 1);
     quickSort(vetor, meio + 1, fim);
   }
 };
 
 function partition(vetor, inicio, fim): number {
-  const pivo = vetor[inicio];
+  let q = inicio, aux;
 
-  let i = inicio, j = fim + 1, t;
-  while (i <= j) {
-    do {
-      ++i;
-    } while (vetor[i] < pivo && i <= fim);
-    do {
-      --j;
-    } while (vetor[j] > pivo);
-
-    t = vetor[i];
-    vetor[i] = vetor[j];
-    vetor[j] = t;
+  for (let i = inicio; i < fim; i++) {
+    if (++QuicknKey && vetor[i] <= vetor[fim]) { //  comparacao
+      QuicknTroc++;
+      aux = vetor[q];
+      vetor[q] = vetor[i];
+      vetor[i] = aux;
+      q++;
+    }
   }
-  t = vetor[inicio];
-  vetor[inicio] = vetor[j];
-  vetor[j] = t;
-  return j;
+  QuicknTroc++;
+  aux = vetor[q];
+  vetor[q] = vetor[fim];
+  vetor[fim] = aux;
+  return q;
 };
+
+export function clearQuick() {
+  QuicknKey = 0;
+  QuicknTroc = 0;
+}
