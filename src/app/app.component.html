@@ -48,7 +48,8 @@
         <a [ngClass]="{'selected': sorts.quick }" (click)="selectSort('quick')" class="btn yellow">QuickSort </a>
       </div>
       <div class="buttons" class="d-flex">
-        <a [ngClass]="{'selected': sorts.tim }" (click)="selectSort('tim')" class="btn orange">TimSort </a>
+        <a style="width: 100%" [ngClass]="{'selected': sorts.tim }" (click)="selectSort('tim')" class="btn orange">TimSort
+        </a>
       </div>
 
     </div>
@@ -69,7 +70,7 @@
   </div>
 
   <div class="d-flex jutify-content-center">
-    <a (click)="startComp(arrayType, compType, sorts); startedComp = !startedComp" class="btn green d-flex jutify-content-center aling-items-center"
+    <a (click)="startComp(arrayType, compType, sorts); startedComp = !startedComp;" class="btn green d-flex jutify-content-center aling-items-center"
       style="width: 40%; height: 40px;">INICIAR COMPARACAO</a>
   </div>
 

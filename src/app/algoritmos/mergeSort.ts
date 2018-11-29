@@ -1,6 +1,5 @@
 export let mergenKey = 0, mergenTroc = 0;
 
-
 /**
  * MergeSort algoritm
  * @param vetor array to be sort
@@ -24,7 +23,6 @@ export function mergeSort(vetor: number[], inicio: any, fim: any) {
     merge(vetor, inicio, meio, fim);
   }
 };
-
 
 
 function merge(vetor: number[], inicio: any, meio: any, fim: any) {

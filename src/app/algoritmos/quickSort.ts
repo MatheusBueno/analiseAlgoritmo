@@ -16,7 +16,8 @@ function partition(vetor, inicio, fim): number {
   let q = inicio, aux;
 
   for (let i = inicio; i < fim; i++) {
-    if (++QuicknKey && vetor[i] <= vetor[fim]) { //  comparacao
+    ++QuicknKey;
+    if (vetor[i] <= vetor[fim]) {
       QuicknTroc++;
       aux = vetor[q];
       vetor[q] = vetor[i];

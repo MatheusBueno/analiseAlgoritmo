@@ -10,6 +10,7 @@ import { mergeSort, clearMerge, mergenKey, mergenTroc } from './algoritmos/merge
 import { quickSort, QuicknKey, QuicknTroc, clearQuick } from './algoritmos/quickSort';
 
 import { UtilsService } from './providers/utils.service';
+import { timSort, sortTim, clearTim, TimnKey, TimnTroc } from './algoritmos/timSort';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   public startedComp = false;
+  public loading = false;
 
   // Chart variables.
   public labels = [];
@@ -77,6 +79,9 @@ export class AppComponent implements OnInit {
 
 
   startComp(arrayType, compType, sorts) {
+    this.loading = true;
+    console.log(this.loading);
+
     console.log(arrayType, compType, sorts, this.form);
 
     // Variavaies
@@ -87,7 +92,7 @@ export class AppComponent implements OnInit {
     // vetor grande
     const big = (arrayType.big) ? this.utils.createArray(50000) : null;
     // vetor pequeno
-    const small = (arrayType.small) ? this.utils.createArray(100) : null;
+    const small = (arrayType.small) ? this.utils.createArray(10000) : null;
 
     // pega qual o vetor utilizado pelo usuário
     const array: number[] = (vetNumber) ? vetNumber : big ? big : small;
@@ -241,9 +246,31 @@ export class AppComponent implements OnInit {
       }
       this.labels.push('Quick');
     }
+    // ============  TIM SORT  ============
     if (sorts.tim) {
 
-      console.log(array);
+      if (big) {
+        const original = Object.assign([], big);
+        sortTim(original);
+        console.log(original);
+        chartDataBig.push((compType.key) ? TimnKey : TimnTroc)
+        clearTim();
+      }
+      if (small) {
+        const original = Object.assign([], small);
+        sortTim(original);
+        console.log(original);
+        chartDataSmall.push((compType.key) ? TimnKey : TimnTroc)
+        clearTim();
+      }
+      if (vetNumber) {
+        const original = Object.assign([], vetNumber);
+        sortTim(original);
+        console.log(original);
+        chartDataUser.push((compType.key) ? TimnKey : TimnTroc)
+        clearTim();
+      }
+
       // console.log(original);
       this.labels.push('Tim');
     }
@@ -253,6 +280,8 @@ export class AppComponent implements OnInit {
     this.setDataChart(vetNumber, big, small, chartDataSmall, 'small');
     this.setDataChart(vetNumber, big, small, chartDataUser, 'user');
 
+    this.loading = false;
+    console.log(this.loading);
   }
 
   /**

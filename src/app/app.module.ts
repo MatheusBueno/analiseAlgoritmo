@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { UtilsService } from './providers/utils.service';
 import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './components/chart/chart.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
