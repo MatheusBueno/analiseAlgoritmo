@@ -9,7 +9,7 @@ export class ChartComponent implements OnInit {
 
   // ADD CHART OPTIONS. 
   chartOptions = {
-    responsive: true   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
+    responsive: true,   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   }
 
   @Input() labels;

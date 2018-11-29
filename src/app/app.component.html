@@ -5,15 +5,14 @@
         <h1>Escolha o vetor</h1>
       </div>
 
-      <div [ngClass]="{'selected': arrayType.big }" (click)="genereteArray('big')" class="btn green">Vetor
-        aleatorio grande</div>
+      <a [ngClass]="{'selected': arrayType.big }" (click)="genereteArray('big')" class="btn green">Vetor
+        aleatorio grande</a>
       <br>
-      <div [ngClass]="{'selected': arrayType.small }" (click)="genereteArray('small')" class="btn blue">Vetor
-        aleatorio pequeno</div>
+      <a [ngClass]="{'selected': arrayType.small }" (click)="genereteArray('small')" class="btn blue">Vetor
+        aleatorio pequeno</a>
       <br>
       <br>
       <span>OU</span>
-      <br>
       <br>
       <br>
       <span style="font-size: 20px;">
@@ -24,8 +23,9 @@
       <br>
       <form [formGroup]="form">
         <input formControlName="array" placeholder='Digite' type="text">
-
       </form>
+      <a [ngClass]="{'selected': inverse }" (click)="inverse = !inverse" class="btn red">Ordenar vetor
+        inversamente</a>
     </div>
 
     <!-- metodos -->
@@ -70,7 +70,7 @@
   </div>
 
   <div class="d-flex jutify-content-center">
-    <a (click)="startComp(arrayType, compType, sorts); startedComp = !startedComp;" class="btn green d-flex jutify-content-center aling-items-center"
+    <a (click)="startComp(arrayType, compType, sorts, inverse); startedComp = !startedComp;" class="btn green d-flex jutify-content-center aling-items-center"
       style="width: 40%; height: 40px;">INICIAR COMPARACAO</a>
   </div>
 

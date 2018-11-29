@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
   public startedComp = false;
   public loading = false;
+  public inverse = false;
 
   // Chart variables.
   public labels = [];
@@ -78,9 +79,8 @@ export class AppComponent implements OnInit {
   }
 
 
-  startComp(arrayType, compType, sorts) {
+  startComp(arrayType, compType, sorts, inverse: boolean) {
     this.loading = true;
-    console.log(this.loading);
 
     console.log(arrayType, compType, sorts, this.form);
 
@@ -88,20 +88,25 @@ export class AppComponent implements OnInit {
     const userVet = this.form.get('array').value;
 
     // vetor do usuario
-    const vetNumber = (userVet !== '') ? userVet.split(",").map(x => parseInt(x)) : null;
+    const vetNumber: any[] = (userVet !== '') ? userVet.split(",").map(x => parseInt(x)) : null;
     // vetor grande
     const big = (arrayType.big) ? this.utils.createArray(50000) : null;
     // vetor pequeno
-    const small = (arrayType.small) ? this.utils.createArray(10000) : null;
+    const small = (arrayType.small) ? this.utils.createArray(40) : null;
 
-    // pega qual o vetor utilizado pelo usuário
-    const array: number[] = (vetNumber) ? vetNumber : big ? big : small;
+    // ordena inversamente
+    if (inverse) {
+      if (vetNumber) vetNumber.sort().reverse();
+      if (big) big.sort().reverse();
+      if (small) small.sort().reverse();
+    }
+    console.log(small);
+
 
     // data to chart
     const chartDataUser = [];
     const chartDataBig = [];
     const chartDataSmall = [];
-    const chartData = [];
 
     // Call sort methodos.
 
@@ -344,6 +349,7 @@ export class AppComponent implements OnInit {
     this.labels = [];
     this.chartData = [];
     this.colors = [];
+    this.inverse = false;
 
     // clear sort counts
     clearBubble();

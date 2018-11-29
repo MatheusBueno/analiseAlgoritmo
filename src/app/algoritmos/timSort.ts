@@ -39,8 +39,8 @@ function calcMinrun(n) {
 
 // cut array to monotonic chunks named (natural) "run"
 var nextRun = function (state) {
-  if (state.remain >= state.last) return false;
-  if (state.last - state.remain <= 1) {
+  if (TimnKey++ && state.remain >= state.last) return false;
+  if (TimnKey++ && state.last - state.remain <= 1) {
     cutRun(state, state.last);
     return true;
   }
@@ -48,7 +48,7 @@ var nextRun = function (state) {
   var last = state.remain;
   var prev = state.array[last++];
   var lastVal = state.array[last++];
-  if (state.lessThanEqual(prev, lastVal)) {
+  if (TimnKey++ && state.lessThanEqual(prev, lastVal)) {
     prev = lastVal;
     while (last < state.last) {
       var val = state.array[last];
@@ -101,6 +101,7 @@ var reverse = function (array, first, last) {
 
 // swap array elements
 var swap = function (array, a, b) {
+  TimnTroc++;
   var tmp = array[a];
   array[a] = array[b];
   array[b] = tmp;
@@ -108,7 +109,7 @@ var swap = function (array, a, b) {
 
 // loop condition when merge neighbors
 var whenMerge = function (state) {
-  if (state.remain === state.last) {
+  if (TimnKey++ && state.remain === state.last) {
     return state.runStack.length > 1;
   }
   if (state.runStack.length <= 1) {
@@ -202,9 +203,11 @@ var mergeLeftOnePairMode = function (array, state, m) {
   var rval = m.right[m.rcur];
   if (state.lessThanEqual(lval, rval)) { // for sort stable
     array[m.cur++] = lval; m.lcur++;
+    TimnTroc++;
     modeControlInOnePairMode(state, m, !m.selectLeft);
   } else {
     array[m.cur++] = rval; m.rcur++;
+    TimnTroc++;
     modeControlInOnePairMode(state, m, m.selectLeft);
   }
 };
@@ -227,18 +230,18 @@ var mergeLeftGallopingMode = function (array, state, m) {
   if (state.minGallop > 0) state.minGallop--;
   var lval = m.left[m.lcur];
   var rval = m.right[m.rcur];
-  if (state.lessThanEqual(lval, rval)) {
+  if (TimnKey++ && state.lessThanEqual(lval, rval)) {
     // left(shorter) side gallop includes right side first (rightmost)
     var end = gallopFirstSearch(
       m.left, m.lcur + 1, m.llast, rval, state.lessThan);
     modeControlInGallopingMode(state, m, end - m.lcur);
-    while (m.lcur < end) array[m.cur++] = m.left[m.lcur++];
+    while (TimnKey++ && m.lcur < end) array[m.cur++] = m.left[m.lcur++];
   } else {
     // right(longer) side gallop excludes left side first (leftmost)
     var end = gallopFirstSearch(
       m.right, m.rcur + 1, m.rlast, lval, state.lessThanEqual);
     modeControlInGallopingMode(state, m, end - m.rcur);
-    while (m.rcur < end) array[m.cur++] = m.right[m.rcur++];
+    while (TimnKey++ && m.rcur < end) array[m.cur++] = m.right[m.rcur++];
   }
 };
 
@@ -294,9 +297,11 @@ var mergeRightOnePairMode = function (array, state, m) {
   var lval = m.left[m.lcur - 1];
   var rval = m.right[m.rcur - 1];
   if (state.lessThan(rval, lval)) { // (lval > rval) for sort stable
+    TimnTroc++;
     array[--m.cur] = lval; --m.lcur;
     modeControlInOnePairMode(state, m, !m.selectLeft);
   } else {
+    TimnTroc++;
     array[--m.cur] = rval; --m.rcur;
     modeControlInOnePairMode(state, m, m.selectLeft);
   }
@@ -307,18 +312,19 @@ var mergeRightGallopingMode = function (array, state, m) {
   if (state.minGallop > 0) state.minGallop--;
   var lval = m.left[m.lcur - 1];
   var rval = m.right[m.rcur - 1];
+  TimnTroc++;
   if (state.lessThan(rval, lval)) {
     // left(longer) side gallop excludes right side last (rightmost)
     var begin = gallopLastSearch(
       m.left, m.lfirst, m.lcur - 1, rval, state.lessThan);
     modeControlInGallopingMode(state, m, m.lcur - begin);
-    while (begin < m.lcur) array[--m.cur] = m.left[--m.lcur];
+    while (TimnKey++ && begin < m.lcur) array[--m.cur] = m.left[--m.lcur];
   } else {
     // right(shorter) side gallop includes left side last (leftmost)
     var begin = gallopLastSearch(
       m.right, m.rfirst, m.rcur - 1, lval, state.lessThanEqual);
     modeControlInGallopingMode(state, m, m.rcur - begin);
-    while (begin < m.rcur) array[--m.cur] = m.right[--m.rcur];
+    while (TimnKey++ && begin < m.rcur) array[--m.cur] = m.right[--m.rcur];
   }
 };
 
@@ -327,7 +333,7 @@ var mergeRightGallopingMode = function (array, state, m) {
 var gallopFirstSearch = function (array, first, last, value, lessThan) {
   var pre = 0;
   var offset = 1;
-  while (first + offset < last) {
+  while (TimnKey++ && first + offset < last) {
     if (lessThan(value, array[first + offset])) break;
     pre = offset;
     offset = (offset << 1) + 1;
@@ -342,7 +348,7 @@ var gallopFirstSearch = function (array, first, last, value, lessThan) {
 var gallopLastSearch = function (array, first, last, value, lessThan) {
   var pre = 0;
   var offset = 1;
-  while (first < last - offset) {
+  while (TimnKey++ && first < last - offset) {
     if (!lessThan(value, array[last - offset])) break;
     pre = offset;
     offset = (offset << 1) + 1;
@@ -354,11 +360,13 @@ var gallopLastSearch = function (array, first, last, value, lessThan) {
 
 // binary search
 var binSearch = function (array, first, last, value, lessThan) {
-  while (first < last) {
+  while (TimnKey++ && first < last) {
     var mid = last + ((first - last) >> 1);
     if (lessThan(value, array[mid])) {
+      TimnTroc++;
       last = mid;
     } else {
+      TimnTroc++;
       first = mid + 1;
     }
   }
@@ -377,12 +385,13 @@ var binarySort = function (array, first, last, lessThan, sortStart) {
 
 // 1 right cyclic shift of array range
 var cyclicRShift = function (array, first, last) {
-  if (last - first <= 1) return array;
+  if (TimnKey++ && last - first <= 1) return array;
   var mostRight = array[last - 1];
   // C: memmove(first, first+1, last-first-1)
   for (var cur = last - 1; cur > first; cur -= 1) {
     array[cur] = array[cur - 1];
   }
+  TimnTroc++;
   array[first] = mostRight;
   return array;
 };
